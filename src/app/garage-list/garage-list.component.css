@@ -1,0 +1,8 @@
+.icon {
+  background: url("whatsapp-logo.png");
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  display: block;
+  /* Other styles here */
+}

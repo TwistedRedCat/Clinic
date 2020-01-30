@@ -1,0 +1,51 @@
+<!-- <table border="1">
+  <div class="row" *ngFor="let x of items; let i = index">
+    <div><img [src]="x.imageUrl" alt="" style="max-height: 200px;" /></div>
+    <div>
+      <tr>
+        <th>Item Name</th>
+        <th>Item Price</th>
+      </tr>
+      <tr>
+        <td>{{ x.name }}</td>
+        <td>{{ x.price }}</td>
+      </tr>
+    </div>
+  </div>
+</table> -->
+
+<div class="row">
+  <div class="col-md-6 list-group-item" *ngFor="let x of items; let i = index">
+    <img
+      [src]="x.imageUrl"
+      alt="test"
+      class="img-responsive"
+      style="height: 300px; width: 300px;"
+    />
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <h3>{{ x.name }}: RM {{ x.price }}</h3>
+        <li>Description: Item Description</li>
+        <li>Contact: Any phone number</li>
+        <span>
+          <a
+            target="_blank"
+            href="{{
+              'https://api.whatsapp.com/send?phone=' +
+                x.phoneNum +
+                '&text=Interested in your ' +
+                x.name
+            }}"
+          >
+            <div *ngIf="x.phoneNum" class="row col-md-6">
+              <div class="col-md-3">
+                <span class="icon"></span>
+              </div>
+              <span style="line-height:2.5">{{ x.phoneNum }}</span>
+            </div>
+          </a>
+        </span>
+      </ul>
+    </div>
+  </div>
+</div>

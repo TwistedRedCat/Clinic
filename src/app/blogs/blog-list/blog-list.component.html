@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12" *ngIf="isLoggedIn">
+    <button class="btn btn-success" (click)="onNewBlog()">New Post</button>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-md-12">
+    <app-blog-item
+      *ngFor="let blogEl of blogs; let i = index"
+      [blog]="blogEl"
+      [index]="i"
+    >
+    </app-blog-item>
+  </div>
+</div>

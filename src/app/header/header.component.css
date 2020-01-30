@@ -1,0 +1,16 @@
+.dropdown-menu {
+  margin-right: 150px;
+}
+
+.activateBackground {
+  background-color: rgba(187, 179, 173, 0.959);
+}
+
+.icon {
+  background: url("home-icon.png");
+  cursor: pointer;
+  height: 40px;
+  width: 48px;
+  display: block;
+  /* Other styles here */
+}

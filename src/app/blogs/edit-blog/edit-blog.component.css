@@ -1,0 +1,5 @@
+.ng-dirty > .error {
+  border: 1px solid red;
+  background-color: rgb(238, 125, 125);
+  color: white;
+}

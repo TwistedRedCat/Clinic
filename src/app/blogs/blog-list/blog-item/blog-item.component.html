@@ -1,0 +1,36 @@
+<a
+  style="cursor: pointer;"
+  [routerLink]="index"
+  routerLinkActive="active"
+  class="list-group-item clearfix"
+>
+  <div class="row mr-auto">
+    <div class="col-4">
+      <p class="mr-auto" style="font-size: 12px;">Posted By: xxx</p>
+      <span>
+        <img
+          *ngIf="blog.imagePath; else noImage"
+          [src]="blog.imagePath"
+          alt="Picture here"
+          class="img-responsive col"
+          style="max-height: 250px; min-height:250px;"
+        /><ng-template #noImage
+          ><div class="container">
+            <img
+              src=""
+              alt="No Image"
+              class="img-responsive"
+              style="max-height: 250px; min-height:250px;"
+            />
+          </div>
+        </ng-template>
+      </span>
+    </div>
+    <div class="col-8">
+      <h3 class="list-group">{{ blog.title }}</h3>
+      <p>
+        {{ blog.post | shorten }}
+      </p>
+    </div>
+  </div>
+</a>
