@@ -10,9 +10,11 @@ import { EditBlogComponent } from "./blogs/edit-blog/edit-blog.component";
 import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.component";
 import { BlogsResolverService } from "./services/blog-resolver.service";
 import { AuthRouteGuardService } from "./services/authRouteGuard.service";
+import { AuthComponent } from "./header/auth/auth.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
+  { path: "login", component: AuthComponent },
   {
     path: "blogs",
     component: BlogsComponent,

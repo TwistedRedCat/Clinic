@@ -19,6 +19,7 @@ import { EditBlogComponent } from "./blogs/edit-blog/edit-blog.component";
 import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.component";
 import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinner/loading-spinner.component";
 import { AuthInterceptor } from "./services/http-interceptor.service";
+import { AuthComponent } from "./header/auth/auth.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AuthInterceptor } from "./services/http-interceptor.service";
     BlogItemComponent,
     EditBlogComponent,
     BlogDetailsComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

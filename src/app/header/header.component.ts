@@ -3,7 +3,9 @@ import {
   Output,
   EventEmitter,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef
 } from "@angular/core";
 
 import { NgForm } from "@angular/forms";
@@ -16,6 +18,7 @@ import { Observable, Subscription } from "rxjs";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @ViewChild("s", { static: false }) el: ElementRef;
   @Output() isLoading = new EventEmitter();
   @Output() errorMsg = new EventEmitter<string>();
 
@@ -35,6 +38,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authSub.unsubscribe();
+  }
+
+  toggleOpen(event: any) {
+    if (
+      this.el.nativeElement.children[1].classList.length > 1 &&
+      event.target
+    ) {
+      this.el.nativeElement.children[1].classList.remove("show");
+      return;
+    }
+    this.el.nativeElement.children[1].classList.add("show");
   }
 
   onSubmit(form: NgForm, buttonType: string) {
