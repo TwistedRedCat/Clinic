@@ -115,24 +115,35 @@
   </div>
 </nav> -->
 
-
-<nav class="navbar navbar-dark bg-dark justify-content-center" style="color: white">
+<nav
+  class="navbar navbar-dark bg-dark justify-content-center"
+  style="color: white"
+>
   Khalifah Clinic
 </nav>
 <nav class="navbar navbar-expand-md navbar-dark">
-  <a class="navbar-brand" href="#"><i class="fas fa-home"></i></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" routerLink="/"><i class="fas fa-home"></i></a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="blogs"
+          >Blog <span class="sr-only">(current)</span></a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Garage</a>
+        <a class="nav-link" routerLink="garage-sale">Garage</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" tabindex="-1">Photo</a>
@@ -140,15 +151,31 @@
     </ul>
     <ul class="nav navbar-nav">
       <li class="dropdown" #s>
-        <div style="cursor: pointer;color: white;" class="dropdown-toggle ici" (click)="toggleOpen($event)">
+        <div
+          style="cursor: pointer;color: white;"
+          class="dropdown-toggle ici"
+          (click)="toggleOpen($event)"
+        >
           <i class="fas fa-fingerprint"></i><span class="caret"></span>
         </div>
         <ul class="dropdown-menu">
           <li>
-            <a class="dropdown-item" routerLink="login"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+            <a
+              class="dropdown-item"
+              routerLink="auth"
+              [queryParams]="{ type: 'signin' }"
+              (click)="signIn(true)"
+              ><i class="fas fa-sign-in-alt"></i> Sign In</a
+            >
           </li>
           <li>
-            <a class="dropdown-item" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
+            <a
+              class="dropdown-item"
+              routerLink="auth"
+              [queryParams]="{ type: 'signup' }"
+              (click)="signIn(false)"
+              ><i class="fas fa-user-plus"></i> Sign Up</a
+            >
           </li>
         </ul>
       </li>

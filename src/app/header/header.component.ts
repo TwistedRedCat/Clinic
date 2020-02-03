@@ -5,7 +5,8 @@ import {
   OnInit,
   OnDestroy,
   ViewChild,
-  ElementRef
+  ElementRef,
+  Input
 } from "@angular/core";
 
 import { NgForm } from "@angular/forms";
@@ -22,23 +23,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output() isLoading = new EventEmitter();
   @Output() errorMsg = new EventEmitter<string>();
 
-  authSub: Subscription;
-
-  isAuthenticated = false;
-
+  isLoggedIn = false;
   loadStatus = false;
 
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
-    this.authSub = this.httpService.user.subscribe(user => {
-      this.isAuthenticated = !user ? false : true;
+    this.httpService.userActive.subscribe(status => {
+      this.isLoggedIn = status;
+      console.log("user is logged In");
     });
   }
 
-  ngOnDestroy() {
-    this.authSub.unsubscribe();
-  }
+  ngOnDestroy() {}
 
   toggleOpen(event: any) {
     if (
@@ -51,45 +48,51 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.el.nativeElement.children[1].classList.add("show");
   }
 
-  onSubmit(form: NgForm, buttonType: string) {
-    if (!form.valid) {
-      return;
-    }
-    const email = form.value.email;
-    const password = form.value.password;
-    this.loadStatus = true;
-
-    let obs: Observable<AuthResponse>;
-
-    if (buttonType === "LogIn") {
-      obs = this.httpService.httpSignIn(email, password);
-    } else {
-      obs = this.httpService.httpSignUP(email, password);
-    }
-
-    obs.subscribe(
-      resData => {
-        setTimeout(() => {
-          this.loadStatus = false;
-          this.isLoading.emit(this.loadStatus);
-          this.errorMsg.emit(null);
-        }, 1000);
-      },
-      error => {
-        setTimeout(() => {
-          this.loadStatus = false;
-          this.errorMsg.emit(error);
-          this.isLoading.emit(this.loadStatus);
-        }, 1000);
-      }
-    );
-
-    this.isLoading.emit(this.loadStatus);
-
-    form.reset();
+  signIn(bool: boolean) {
+    this.httpService.authSignIn.next(bool);
+    this.el.nativeElement.children[1].classList.remove("show");
   }
 
   onLogOut() {
     this.httpService.logOut();
   }
+
+  // onSubmit(form: NgForm, buttonType: string) {
+  //   if (!form.valid) {
+  //     return;
+  //   }
+  //   const email = form.value.email;
+  //   const password = form.value.password;
+  //   this.loadStatus = true;
+
+  //   let obs: Observable<AuthResponse>;
+
+  //   if (buttonType === "LogIn") {
+  //     obs = this.httpService.httpSignIn(email, password);
+  //   } else {
+  //     obs = this.httpService.httpSignUP(email, password);
+  //   }
+
+  //   obs.subscribe(
+  //     resData => {
+  //       setTimeout(() => {
+  //         this.loadStatus = false;
+  //         this.userActive = true;
+  //         this.isLoading.emit(this.loadStatus);
+  //         this.errorMsg.emit(null);
+  //       }, 1000);
+  //     },
+  //     error => {
+  //       setTimeout(() => {
+  //         this.loadStatus = false;
+  //         this.errorMsg.emit(error);
+  //         this.isLoading.emit(this.loadStatus);
+  //       }, 1000);
+  //     }
+  //   );
+
+  //   this.isLoading.emit(this.loadStatus);
+
+  //   form.reset();
+  // }
 }

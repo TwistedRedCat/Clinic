@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Blog } from "../shared/blog.model";
 import { BlogsServices } from "./blogs.service";
 import { map, tap, catchError } from "rxjs/operators";
-import { Subject, throwError, BehaviorSubject } from "rxjs";
+import { Subject, throwError, BehaviorSubject, Subscription } from "rxjs";
 import { EmailValidator } from "@angular/forms";
 import { User } from "../shared/user.model";
 import { Router } from "@angular/router";
@@ -21,9 +21,16 @@ export interface AuthResponse {
 @Injectable({ providedIn: "root" })
 export class HttpService {
   urlPath: string[];
-  userActive: User;
+  userActive = new Subject<boolean>();
   user = new BehaviorSubject<User>(null);
+  authSignIn = new Subject<boolean>();
+  isLoading = new Subject<boolean>();
+  errorMsg = new Subject<string>();
   logOutTimer: any;
+
+  get activatedUser() {
+    return this.userActive;
+  }
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -153,6 +160,9 @@ export class HttpService {
       userLS._token,
       new Date(userLS._tokenExpirationDate)
     );
+
+    this.userActive.next(true);
+
     if (newUser.token) {
       const timeLeft =
         new Date(userLS._tokenExpirationDate).getTime() - new Date().getTime();
@@ -162,7 +172,7 @@ export class HttpService {
   }
 
   logOut() {
-    this.userActive = null;
+    this.userActive.next(false);
     this.user.next(null);
     this.router.navigate(["/"]);
     localStorage.removeItem("userData");
@@ -187,8 +197,8 @@ export class HttpService {
     const expirationDate = new Date(new Date().getTime() + tokenExp * 1000);
     const user = new User(email, userId, userToken, expirationDate);
     console.log(expirationDate);
-    this.userActive = user;
-    localStorage.setItem("userData", JSON.stringify(this.userActive));
+    this.userActive.next(true);
+    localStorage.setItem("userData", JSON.stringify(user));
     this.user.next(user);
     this.autoLogOut(tokenExp * 1000);
   }

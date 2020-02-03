@@ -17,5 +17,11 @@ export class AppComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.httpService.autoLogin();
+    this.httpService.isLoading.subscribe(result => {
+      this.spinner = result;
+    });
+    this.httpService.errorMsg.subscribe(result => {
+      this.errorMsg = result;
+    });
   }
 }
