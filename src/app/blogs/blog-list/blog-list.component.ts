@@ -19,8 +19,9 @@ import { BlogsServices } from "src/app/services/blogs.service";
 })
 export class BlogListComponent implements OnInit, OnChanges, OnDestroy {
   blogs: Blog[];
+  blogsToReverse: Blog[];
   isLoggedIn = true;
-  // componentSub: Subscription;
+  componentSub: Subscription;
 
   constructor(
     private blogService: BlogsServices,
@@ -33,16 +34,15 @@ export class BlogListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data: Data) => {
-      console.log(data["blog"]);
+    this.componentSub = this.route.data.subscribe((data: Data) => {
       this.blogs = Object.values(data["blog"]);
-      console.log(this.blogs);
-      this.blogService.test2 = this.blogs;
+      console.log(data);
+      this.blogService.blogList = this.blogs;
     });
   }
 
   ngOnDestroy() {
-    // this.componentSub.unsubscribe();
+    this.componentSub.unsubscribe();
   }
 
   onNewBlog() {

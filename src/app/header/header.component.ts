@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
+    this.isLoggedIn = this.httpService.activatedUser;
+    console.log(this.isLoggedIn);
     this.httpService.userActive.subscribe(status => {
       this.isLoggedIn = status;
       console.log("user is logged In");

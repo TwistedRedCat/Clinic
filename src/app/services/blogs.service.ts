@@ -9,11 +9,11 @@ export class BlogsServices {
   activeBlog = new Subject<Blog>();
   activeIndex: number;
 
-  get test() {
+  get blogResolver() {
     return JSON.parse(JSON.stringify(this.blogs));
   }
 
-  set test2(val: any) {
+  set blogList(val: any) {
     this.blogs = val;
     this.blogsChanged.next(val);
   }
@@ -37,7 +37,8 @@ export class BlogsServices {
   addBlog(blog: Blog) {
     this.http.httpAddBlog(blog).subscribe(result => {
       console.log("success");
-      this.blogs.push(blog);
+      this.blogs.reverse().push(blog);
+      this.blogs.reverse();
       this.blogsChanged.next(this.blogs.slice());
     });
   }

@@ -20,6 +20,7 @@ import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.componen
 import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinner/loading-spinner.component";
 import { AuthInterceptor } from "./services/http-interceptor.service";
 import { AuthComponent } from "./auth/auth.component";
+import { ReversePipe } from "./shared/reverse.pipe";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AuthComponent } from "./auth/auth.component";
     HomeComponent,
     GarageDetailsComponent,
     ShortenPipe,
+    ReversePipe,
     BlogsComponent,
     BlogListComponent,
     BlogItemComponent,

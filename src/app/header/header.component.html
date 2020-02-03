@@ -152,12 +152,20 @@
     <ul class="nav navbar-nav">
       <li class="dropdown" #s>
         <div
+          *ngIf="!isLoggedIn; else loggedin"
           style="cursor: pointer;color: white;"
-          class="dropdown-toggle ici"
+          class="dropdown-toggle ico"
           (click)="toggleOpen($event)"
         >
-          <i class="fas fa-fingerprint"></i><span class="caret"></span>
+          <i class="fas fa-user-times"></i>
         </div>
+        <ng-template #loggedin>
+          <div class="row ico" style="cursor: pointer;">
+            <a class="nav-link" href="#" tabindex="-1" (click)="onLogOut()"
+              ><i class="fas fa-user-check"></i> SignOut</a
+            >
+          </div>
+        </ng-template>
         <ul class="dropdown-menu">
           <li>
             <a

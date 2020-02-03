@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Blog } from "../shared/blog.model";
 import { BlogsServices } from "./blogs.service";
-import { map, tap, catchError } from "rxjs/operators";
+import { map, tap, catchError, toArray, mergeMap } from "rxjs/operators";
 import { Subject, throwError, BehaviorSubject, Subscription } from "rxjs";
 import { EmailValidator } from "@angular/forms";
 import { User } from "../shared/user.model";
@@ -21,7 +21,9 @@ export interface AuthResponse {
 @Injectable({ providedIn: "root" })
 export class HttpService {
   urlPath: string[];
+  urlPathReverse: string[];
   userActive = new Subject<boolean>();
+  userActiveBool: boolean;
   user = new BehaviorSubject<User>(null);
   authSignIn = new Subject<boolean>();
   isLoading = new Subject<boolean>();
@@ -29,14 +31,14 @@ export class HttpService {
   logOutTimer: any;
 
   get activatedUser() {
-    return this.userActive;
+    return this.userActiveBool;
   }
 
   constructor(private http: HttpClient, private router: Router) {}
 
   httpFetchBlogs() {
     return this.http
-      .get<Blog[]>("https://testing6187.firebaseio.com/posts.json")
+      .get<any>("https://testing6187.firebaseio.com/posts.json")
       .pipe(
         tap(fetchedBlogs => {
           this.urlPath = [];
@@ -45,6 +47,14 @@ export class HttpService {
               this.urlPath.push(key);
             }
           }
+          this.urlPathReverse = this.urlPath.reverse();
+        }),
+        map(data => {
+          return Object.keys(data)
+            .map(z => {
+              return data[z];
+            })
+            .reverse();
         })
       );
   }
@@ -64,8 +74,12 @@ export class HttpService {
   }
 
   httpDeleteBlog(i: number) {
+    console.log(this.urlPathReverse);
+    console.log(this.urlPathReverse[i]);
     return this.http.delete<null>(
-      "https://testing6187.firebaseio.com/posts/" + this.urlPath[i] + ".json"
+      "https://testing6187.firebaseio.com/posts/" +
+        this.urlPathReverse[i] +
+        ".json"
     );
   }
 
@@ -162,6 +176,7 @@ export class HttpService {
     );
 
     this.userActive.next(true);
+    this.userActiveBool = true;
 
     if (newUser.token) {
       const timeLeft =

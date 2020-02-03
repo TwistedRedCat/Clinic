@@ -20,7 +20,7 @@ export class BlogsResolverService
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Blog[]> | Blog[] {
-    const blogs = this.blogsService.test;
+    const blogs = this.blogsService.blogResolver;
     const index = this.blogsService.activeIndex;
 
     console.log(route.params.id);

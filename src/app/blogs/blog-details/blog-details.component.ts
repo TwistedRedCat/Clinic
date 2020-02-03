@@ -39,6 +39,7 @@ export class BlogDetailsComponent implements OnInit {
     const box = confirm("are you sure you want to delete");
     if (box === true) {
       this.blogServices.deleteBlog(this.index).subscribe(result => {
+        console.log(this.index);
         this.router.navigate(["../"], { relativeTo: this.route });
       });
     }

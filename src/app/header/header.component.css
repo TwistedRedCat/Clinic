@@ -20,11 +20,7 @@
   margin-right: -10px;
 }
 
-.ici {
-  border-radius: 50%;
-}
-
-.ici:hover {
+.ico:hover {
   color: black !important;
 }
 
