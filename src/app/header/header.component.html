@@ -150,12 +150,11 @@
       </li>
     </ul>
     <ul class="nav navbar-nav">
-      <li class="dropdown" #s>
+      <li class="dropdown" #a>
         <div
           *ngIf="!isLoggedIn; else loggedin"
           style="cursor: pointer;color: white;"
           class="dropdown-toggle ico"
-          (click)="toggleOpen($event)"
         >
           <i class="fas fa-user-times"></i>
         </div>

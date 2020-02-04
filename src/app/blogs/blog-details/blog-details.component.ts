@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  HostListener
+} from "@angular/core";
 import { BlogsServices } from "../../services/blogs.service";
 import { Blog } from "src/app/shared/blog.model";
 import { ActivatedRoute, Router, Data } from "@angular/router";
@@ -10,6 +17,21 @@ import { Subscription } from "rxjs";
   styleUrls: ["./blog-details.component.css"]
 })
 export class BlogDetailsComponent implements OnInit {
+  @ViewChild("b", { static: false }) el: ElementRef;
+
+  @HostListener("document:click", ["$event"]) listenEdit(event: any) {
+    if (
+      event.target.classList.contains("dropdown-toggle") &&
+      this.el.nativeElement.classList.length === 1
+    ) {
+      console.log("click from button");
+      this.el.nativeElement.classList.add("show");
+    } else {
+      this.el.nativeElement.classList.remove("show");
+    }
+  }
+
+  text: string;
   blog = {};
   index: number;
   isLoggedIn = true;
@@ -17,7 +39,8 @@ export class BlogDetailsComponent implements OnInit {
   constructor(
     private blogServices: BlogsServices,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private eRef: ElementRef
   ) {}
 
   ngOnInit() {

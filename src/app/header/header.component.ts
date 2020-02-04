@@ -6,7 +6,8 @@ import {
   OnDestroy,
   ViewChild,
   ElementRef,
-  Input
+  Input,
+  HostListener
 } from "@angular/core";
 
 import { NgForm } from "@angular/forms";
@@ -19,9 +20,20 @@ import { Observable, Subscription } from "rxjs";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @ViewChild("s", { static: false }) el: ElementRef;
+  @ViewChild("a", { static: false }) el: ElementRef;
   @Output() isLoading = new EventEmitter();
   @Output() errorMsg = new EventEmitter<string>();
+  @HostListener("document:click", ["$event"]) listenAuth(event: any) {
+    const x = event.target.classList.contains("fa-user-times");
+    const y = event.target.classList.contains("ico");
+    const z = this.el.nativeElement.children[1].classList.length;
+    if ((x || y) && z === 1) {
+      console.log(this.el);
+      this.el.nativeElement.children[1].classList.add("show");
+    } else {
+      this.el.nativeElement.children[1].classList.remove("show");
+    }
+  }
 
   isLoggedIn = false;
   loadStatus = false;
@@ -39,62 +51,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {}
 
-  toggleOpen(event: any) {
-    if (
-      this.el.nativeElement.children[1].classList.length > 1 &&
-      event.target
-    ) {
-      this.el.nativeElement.children[1].classList.remove("show");
-      return;
-    }
-    this.el.nativeElement.children[1].classList.add("show");
-  }
-
   signIn(bool: boolean) {
     this.httpService.authSignIn.next(bool);
     this.el.nativeElement.children[1].classList.remove("show");
   }
 
   onLogOut() {
-    this.httpService.logOut();
+    const confirmation = confirm("Are you sure you want to sign out?");
+    if (confirmation) {
+      this.httpService.logOut();
+    }
   }
-
-  // onSubmit(form: NgForm, buttonType: string) {
-  //   if (!form.valid) {
-  //     return;
-  //   }
-  //   const email = form.value.email;
-  //   const password = form.value.password;
-  //   this.loadStatus = true;
-
-  //   let obs: Observable<AuthResponse>;
-
-  //   if (buttonType === "LogIn") {
-  //     obs = this.httpService.httpSignIn(email, password);
-  //   } else {
-  //     obs = this.httpService.httpSignUP(email, password);
-  //   }
-
-  //   obs.subscribe(
-  //     resData => {
-  //       setTimeout(() => {
-  //         this.loadStatus = false;
-  //         this.userActive = true;
-  //         this.isLoading.emit(this.loadStatus);
-  //         this.errorMsg.emit(null);
-  //       }, 1000);
-  //     },
-  //     error => {
-  //       setTimeout(() => {
-  //         this.loadStatus = false;
-  //         this.errorMsg.emit(error);
-  //         this.isLoading.emit(this.loadStatus);
-  //       }, 1000);
-  //     }
-  //   );
-
-  //   this.isLoading.emit(this.loadStatus);
-
-  //   form.reset();
-  // }
 }

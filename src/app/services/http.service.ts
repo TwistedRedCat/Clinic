@@ -195,6 +195,10 @@ export class HttpService {
       clearTimeout(this.logOutTimer);
     }
     this.logOutTimer = null;
+    this.isLoading.next(true);
+    const x = setTimeout(time => {
+      this.isLoading.next(false);
+    }, 1000);
   }
 
   autoLogOut(timer: number) {
