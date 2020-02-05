@@ -24,7 +24,6 @@ export class BlogDetailsComponent implements OnInit {
       event.target.classList.contains("dropdown-toggle") &&
       this.el.nativeElement.classList.length === 1
     ) {
-      console.log("click from button");
       this.el.nativeElement.classList.add("show");
     } else {
       this.el.nativeElement.classList.remove("show");
@@ -32,7 +31,7 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   text: string;
-  blog = {};
+  blog = null;
   index: number;
   isLoggedIn = true;
 
@@ -45,11 +44,8 @@ export class BlogDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.index = +this.route.snapshot.params["id"];
-    // this.blog = this.blogServices.getBlog(this.index);
-    // console.log(a);
     this.blogServices.activeIndex = this.index;
     this.route.data.subscribe((data: Data) => {
-      // this.blogs = Object.values(data["blog"]);
       const blogs = Object.values(data["blog"]);
       this.blog = blogs[this.index];
       this.blogServices.activeBlog.subscribe(res => {
@@ -59,7 +55,7 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   onClick(event: Event) {
-    const box = confirm("are you sure you want to delete");
+    const box = confirm("Are you sure you want to delete");
     if (box === true) {
       this.blogServices.deleteBlog(this.index).subscribe(result => {
         console.log(this.index);

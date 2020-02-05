@@ -16,7 +16,7 @@ export class EditBlogComponent implements OnInit {
   @ViewChild("post", { static: false }) postInput: string;
   @ViewChild("imageUrl", { static: false }) imageUrlInput: string;
   error = new Subject<any>();
-  blog: Blog;
+  blog = {} as Blog;
   err = null;
   editMode = false;
   abc: string;
@@ -54,6 +54,10 @@ export class EditBlogComponent implements OnInit {
       this.blogsServices.addBlog(form.value);
     }
 
+    this.router.navigate(["../"], { relativeTo: this.route });
+  }
+
+  onCancel() {
     this.router.navigate(["../"], { relativeTo: this.route });
   }
 }

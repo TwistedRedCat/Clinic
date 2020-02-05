@@ -1,128 +1,11 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/"><span class="icon"></span></a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse col-md-8 text-uppercase" id="navbarNav">
-    <ul class="nav navbar-nav">
-      <li class="nav-item active">
-        <a
-          class="nav-link"
-          routerLink="blogs"
-          routerLinkActive="activateBackground"
-          >Blogs <span class="sr-only">(current)</span></a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="garage-sale"
-          routerLinkActive="activateBackground"
-          >Garage</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="photo"
-          routerLinkActive="activateBackground"
-          >Photos</a
-        >
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-4">
-    <ul *ngIf="isAuthenticated" class="nav navbar-nav">
-      <li class="nav-item  ml-auto">
-        <a
-          class="nav-link"
-          (click)="onLogOut()"
-          class="nav-link"
-          style="cursor: pointer;"
-          >LogOut</a
-        >
-      </li>
-    </ul>
-    <ul class="nav navbar-nav" *ngIf="!isAuthenticated">
-      <li class="nav-item dropdown ml-auto">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          SignIn/Up
-        </a>
-        <div
-          class="dropdown-menu mr-auto"
-          aria-labelledby="navbarDropdown"
-          style="padding: 12px 0px"
-        >
-          <form (ngSubmit)="onSubmit(f, buttonType)" #f="ngForm">
-            <div class="form-group">
-              <label for="email">Username</label>
-              <input
-                class="form-control"
-                type="email"
-                id="email"
-                ngModel
-                name="email"
-                required
-                email
-              />
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input
-                class="form-control"
-                type="password"
-                id="password"
-                ngModel
-                name="password"
-                required
-              />
-            </div>
-            <button
-              class="btn btn-primary"
-              type="button"
-              (click)="onSubmit(f, 'LogIn')"
-            >
-              LogIn
-            </button>
-            |
-            <button
-              class="btn btn-primary"
-              (click)="onSubmit(f, 'signUp')"
-              type="button"
-            >
-              SignUp
-            </button>
-          </form>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav> -->
-
 <nav
   class="navbar navbar-dark bg-dark justify-content-center"
   style="color: white"
 >
-  Khalifah Clinic
+  Husni's Website
 </nav>
 <nav class="navbar navbar-expand-md navbar-dark">
-  <a class="navbar-brand" routerLink="/"><i class="fas fa-home"></i></a>
+  <a class="navbar-brand" href="/"><i class="fas fa-home"></i></a>
   <button
     class="navbar-toggler"
     type="button"
@@ -131,11 +14,9 @@
     aria-controls="navbarsExampleDefault"
     aria-expanded="false"
     aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  ></button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <div class="navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="blogs"
@@ -146,7 +27,7 @@
         <a class="nav-link" routerLink="garage-sale">Garage</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" tabindex="-1">Photo</a>
+        <a class="nav-link" href="/" tabindex="-1">Photo</a>
       </li>
     </ul>
     <ul class="nav navbar-nav">

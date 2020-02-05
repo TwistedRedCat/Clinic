@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Blog } from "../shared/blog.model";
-import { BlogsServices } from "./blogs.service";
-import { map, tap, catchError, toArray, mergeMap } from "rxjs/operators";
+import { map, tap, catchError } from "rxjs/operators";
 import { Subject, throwError, BehaviorSubject, Subscription } from "rxjs";
-import { EmailValidator } from "@angular/forms";
 import { User } from "../shared/user.model";
 import { Router } from "@angular/router";
+import { environment } from "../../environments/environment";
 
 export interface AuthResponse {
   kind: string;
@@ -38,7 +37,7 @@ export class HttpService {
 
   httpFetchBlogs() {
     return this.http
-      .get<any>("https://testing6187.firebaseio.com/posts.json")
+      .get<any>("https://husin-web.firebaseio.com//posts.json")
       .pipe(
         tap(fetchedBlogs => {
           this.urlPath = [];
@@ -61,23 +60,20 @@ export class HttpService {
 
   httpUpdateBlog(i: number, blog: Blog) {
     return this.http.patch(
-      "https://testing6187.firebaseio.com/posts/" + this.urlPath[i] + ".json",
+      "https://husin-web.firebaseio.com/posts/" + this.urlPath[i] + ".json",
       blog
     );
   }
 
   httpAddBlog(blog: Blog) {
-    return this.http.post(
-      "https://testing6187.firebaseio.com/posts.json",
-      blog
-    );
+    return this.http.post("https://husin-web.firebaseio.com/posts.json", blog);
   }
 
   httpDeleteBlog(i: number) {
     console.log(this.urlPathReverse);
     console.log(this.urlPathReverse[i]);
     return this.http.delete<null>(
-      "https://testing6187.firebaseio.com/posts/" +
+      "https://husin-web.firebaseio.com/posts/" +
         this.urlPathReverse[i] +
         ".json"
     );
@@ -86,7 +82,8 @@ export class HttpService {
   httpSignUP(email: string, password: string) {
     return this.http
       .post<AuthResponse>(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyASPbT5oH16kEPKeKbtjdCbs1ijl1tMTcQ",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
+          environment.fireBaseKey,
         {
           email: email,
           password: password,
@@ -122,7 +119,8 @@ export class HttpService {
   httpSignIn(email: string, password: string) {
     return this.http
       .post<AuthResponse>(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyASPbT5oH16kEPKeKbtjdCbs1ijl1tMTcQ",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
+          environment.fireBaseKey,
         {
           email: email,
           password: password,
@@ -152,6 +150,7 @@ export class HttpService {
             resData.idToken,
             +resData.expiresIn
           );
+          console.log(resData);
         })
       );
   }
@@ -215,7 +214,6 @@ export class HttpService {
   ) {
     const expirationDate = new Date(new Date().getTime() + tokenExp * 1000);
     const user = new User(email, userId, userToken, expirationDate);
-    console.log(expirationDate);
     this.userActive.next(true);
     localStorage.setItem("userData", JSON.stringify(user));
     this.user.next(user);

@@ -17,7 +17,7 @@ import { BlogsServices } from "src/app/services/blogs.service";
   templateUrl: "./blog-list.component.html",
   styleUrls: ["./blog-list.component.css"]
 })
-export class BlogListComponent implements OnInit, OnChanges, OnDestroy {
+export class BlogListComponent implements OnInit, OnDestroy {
   blogs: Blog[];
   blogsToReverse: Blog[];
   isLoggedIn = true;
@@ -29,14 +29,9 @@ export class BlogListComponent implements OnInit, OnChanges, OnDestroy {
     private route: ActivatedRoute
   ) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log("On changes called");
-  }
-
   ngOnInit() {
     this.componentSub = this.route.data.subscribe((data: Data) => {
       this.blogs = Object.values(data["blog"]);
-      console.log(data);
       this.blogService.blogList = this.blogs;
     });
   }

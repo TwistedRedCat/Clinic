@@ -28,7 +28,12 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" #b>
         <a class="dropdown-item xyz" routerLink="edit">Edit Post</a>
-        <a class="dropdown-item" (click)="onClick($event)">Delete Post</a>
+        <a
+          class="dropdown-item"
+          style="cursor: pointer;"
+          (click)="onClick($event)"
+          >Delete Post</a
+        >
       </div>
     </div>
   </div>

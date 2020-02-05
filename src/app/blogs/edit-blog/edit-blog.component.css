@@ -3,3 +3,13 @@
   background-color: rgb(238, 125, 125);
   color: white;
 }
+
+.row {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+  border: 1px solid red;
+}

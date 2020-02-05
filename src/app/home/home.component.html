@@ -2,64 +2,47 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3"><i class="fab fa-500px"></i>Hello, world!</h1>
-      <p>
-        This is a template for a simple marketing or informational website. It
-        includes a large callout called a jumbotron and three supporting pieces
-        of content. Use it as a starting point to create something more unique.
-      </p>
-      <p>
-        <a class="btn btn-primary btn-lg" href="#" role="button"
-          >Learn more &raquo;</a
-        >
-      </p>
+      <h1 class="display-3">
+        Hello Stranger!<i class="far fa-smile-beam"></i>
+      </h1>
+      <div>Please login to view and post in blog.</div>
+      <div>Sign up with a dummy email and you are good to go.</div>
+      <div>
+        Login duration is 1 hour and will automatically logout after that.
+      </div>
+      <div>
+        Photo area is still under development and will be redicted to main page
+      </div>
     </div>
   </div>
 
   <div class="container">
     <!-- Example row of columns -->
-    <i class="fab fa-500px"></i>
     <div class="row">
       <div class="col-md-4">
-        <h2>Heading</h2>
+        <h2>Latest Trump tweet</h2>
         <p>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-          tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-          massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-          euismod. Donec sed odio dui.
-        </p>
-        <p>
-          <a class="btn btn-secondary" href="#" role="button"
-            >View details &raquo;</a
+          <a
+            class="twitter-timeline"
+            data-width="500"
+            data-height="500"
+            href="https://twitter.com/realDonaldTrump?ref_src=twsrc%5Etfw"
+            >Tweets by realDonaldTrump</a
           >
         </p>
       </div>
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-          tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-          massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-          euismod. Donec sed odio dui.
-        </p>
-        <p>
-          <a class="btn btn-secondary" href="#" role="button"
-            >View details &raquo;</a
-          >
-        </p>
+        <h2>Weather API</h2>
+        <div *ngIf="weather">
+          <h5>Weather Location: {{ weather.location }}</h5>
+          <h5>Temperature: {{ weather.temperature }} &deg;C</h5>
+        </div>
+        <div id="openweathermap-widget-12"></div>
       </div>
       <div class="col-md-4">
         <h2>Heading</h2>
         <p>
-          Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas
-          eget quam. Vestibulum id ligula porta felis euismod semper. Fusce
-          dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-          fermentum massa justo sit amet risus.
-        </p>
-        <p>
-          <a class="btn btn-secondary" href="#" role="button"
-            >View details &raquo;</a
-          >
+          Latest Blog post under development.
         </p>
       </div>
     </div>

@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const y = event.target.classList.contains("ico");
     const z = this.el.nativeElement.children[1].classList.length;
     if ((x || y) && z === 1) {
-      console.log(this.el);
       this.el.nativeElement.children[1].classList.add("show");
     } else {
       this.el.nativeElement.children[1].classList.remove("show");
@@ -42,10 +41,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoggedIn = this.httpService.activatedUser;
-    console.log(this.isLoggedIn);
     this.httpService.userActive.subscribe(status => {
       this.isLoggedIn = status;
-      console.log("user is logged In");
     });
   }
 
