@@ -17,7 +17,7 @@ import { Subscription } from "rxjs";
   styleUrls: ["./blog-details.component.css"]
 })
 export class BlogDetailsComponent implements OnInit {
-  @ViewChild("b", { static: false }) el: ElementRef;
+  @ViewChild("b") el: ElementRef;
 
   @HostListener("document:click", ["$event"]) listenEdit(event: any) {
     if (

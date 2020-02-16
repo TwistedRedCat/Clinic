@@ -20,7 +20,7 @@ import { Observable, Subscription } from "rxjs";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @ViewChild("a", { static: false }) el: ElementRef;
+  @ViewChild("a") el: ElementRef;
   @Output() isLoading = new EventEmitter();
   @Output() errorMsg = new EventEmitter<string>();
   @HostListener("document:click", ["$event"]) listenAuth(event: any) {

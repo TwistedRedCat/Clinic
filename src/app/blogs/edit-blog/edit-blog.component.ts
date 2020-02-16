@@ -12,9 +12,9 @@ import { Blog } from "src/app/shared/blog.model";
   styleUrls: ["./edit-blog.component.css"]
 })
 export class EditBlogComponent implements OnInit {
-  @ViewChild("title", { static: false }) titleInput: string;
-  @ViewChild("post", { static: false }) postInput: string;
-  @ViewChild("imageUrl", { static: false }) imageUrlInput: string;
+  @ViewChild("title") titleInput: string;
+  @ViewChild("post") postInput: string;
+  @ViewChild("imageUrl") imageUrlInput: string;
   error = new Subject<any>();
   blog = {} as Blog;
   err = null;
