@@ -13,21 +13,25 @@
     </div>
   </div>
 </table> -->
-
+<div>
+  <button class="btn-primary">New Item</button>
+</div>
+<hr />
 <div class="row">
-  <div class="col-md-6 list-group-item" *ngFor="let x of items; let i = index">
+  <div class="col-md-3 list-group-item" *ngFor="let x of items; let i = index">
     <img
       [src]="x.imageUrl"
       alt="test"
-      class="img-responsive"
-      style="height: 300px; width: 300px;"
+      class="img-responsive col"
+      style="height: 100px; width: 100px;"
     />
     <div class="col-xs-12">
       <ul class="list-group">
-        <h3>{{ x.name }}: RM {{ x.price }}</h3>
-        <li>Description: Item Description</li>
-        <li>Contact: Any phone number</li>
-        <span>
+        <h3>{{ x.title }}</h3>
+        <h3>RM {{ x.price }}</h3>
+        <li class="list-group-item">Description: {{ x.description }}</li>
+        <li class="list-group-item">Contact: Any phone number</li>
+        <!-- <span>
           <a
             target="_blank"
             href="{{
@@ -44,7 +48,7 @@
               <span style="line-height:2.5">{{ x.phoneNum }}</span>
             </div>
           </a>
-        </span>
+        </span> -->
       </ul>
     </div>
   </div>

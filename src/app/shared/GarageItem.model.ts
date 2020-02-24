@@ -1,8 +1,8 @@
 export class GarageItem {
   constructor(
-    public name: string,
+    public title: string,
     public price: number,
-    public imageUrl: string,
-    public phoneNum?: number
+    public description: string,
+    public imageUrl: string
   ) {}
 }
