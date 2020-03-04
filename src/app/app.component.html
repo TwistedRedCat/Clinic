@@ -2,7 +2,9 @@
   (isLoading)="spinner = $event"
   (errorMsg)="errorMsg = $event"
 ></app-header> -->
-<app-header></app-header>
+<div class="fixed-top">
+  <app-header></app-header>
+</div>
 <div>
   <div class="row align-items-center justify-content-center">
     <div *ngIf="spinner; else spin" class="d-flex align-items-center">
@@ -10,7 +12,7 @@
     </div>
     <ng-template #spin>
       <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
-      <div class="col-md-12">
+      <div class="col-md-12 children0">
         <router-outlet></router-outlet>
       </div>
     </ng-template>

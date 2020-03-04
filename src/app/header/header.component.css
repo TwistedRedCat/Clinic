@@ -24,6 +24,12 @@
   color: black !important;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
 .navbar {
   background-color: #ee3163;
 }

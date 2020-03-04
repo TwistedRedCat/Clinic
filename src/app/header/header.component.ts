@@ -21,6 +21,7 @@ import { Observable, Subscription } from "rxjs";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild("a") el: ElementRef;
+  @ViewChild("box") box: ElementRef;
   @Output() isLoading = new EventEmitter();
   @Output() errorMsg = new EventEmitter<string>();
   @HostListener("document:click", ["$event"]) listenAuth(event: any) {
@@ -33,6 +34,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.el.nativeElement.children[1].classList.remove("show");
     }
   }
+
+  @HostListener("window:scroll", []) myScroll() {
+    this.sticky = +this.box.nativeElement.offsetTop;
+    if (window.pageYOffset > this.sticky) {
+      this.box.nativeElement.classList.add("sticky");
+    } else {
+      this.box.nativeElement.classList.remove("sticky");
+    }
+  }
+
+  sticky: number;
 
   isLoggedIn = false;
   loadStatus = false;
