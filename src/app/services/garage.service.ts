@@ -7,8 +7,12 @@ export class GarageServices {
 
   constructor(private http: HttpClient) {}
 
-  httpFetchProduct() {
+  fetchProduct() {
     return this.http.get<GarageItem>("http://localhost:8080/garage");
+  }
+
+  addProduct(item: GarageItem) {
+    return this.http.post<GarageItem>("http://localhost:8080/garage/add-item", item);
   }
 
 

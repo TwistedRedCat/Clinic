@@ -11,6 +11,7 @@ import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.componen
 import { BlogsResolverService } from "./services/blog-resolver.service";
 import { AuthRouteGuardService } from "./services/authRouteGuard.service";
 import { AuthComponent } from "./auth/auth.component";
+import { EditGarageComponent } from './garage-list/edit-garage/edit-garage.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     resolve: { blog: BlogsResolverService },
     children: [{ path: "edit", component: EditBlogComponent }]
   },
+  { path: "garage-sale/new", component: EditGarageComponent},
   {
     path: "garage-sale",
     component: GarageListComponent,

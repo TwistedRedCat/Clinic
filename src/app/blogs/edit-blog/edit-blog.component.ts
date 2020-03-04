@@ -15,7 +15,6 @@ export class EditBlogComponent implements OnInit {
   @ViewChild("title") titleInput: string;
   @ViewChild("post") postInput: string;
   @ViewChild("imageUrl") imageUrlInput: string;
-  error = new Subject<any>();
   blog = {} as Blog;
   err = null;
   editMode = false;
@@ -36,15 +35,12 @@ export class EditBlogComponent implements OnInit {
       this.n = this.blogsServices.activeIndex;
       this.blog = this.blogsServices.getBlog(this.n);
     }
-    // this.error.subscribe(res => {
-    //   this.err = res;
-    // });
   }
 
   onSubmit(form: FormGroup) {
     // const title = f;
     if (form.invalid) {
-      this.error.next("error occured");
+      this.err = "error occured";
       return;
     }
 

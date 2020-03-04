@@ -13,7 +13,7 @@ export class GarageListComponent implements OnInit {
   constructor(private garageService: GarageServices) {}
 
   ngOnInit() {
-    this.garageService.httpFetchProduct().subscribe(result => {
+    this.garageService.fetchProduct().subscribe(result => {
       const x = Object.values(result);
       this.items = x[1];
     });

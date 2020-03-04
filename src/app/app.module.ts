@@ -21,6 +21,7 @@ import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinne
 import { AuthInterceptor } from "./services/http-interceptor.service";
 import { AuthComponent } from "./auth/auth.component";
 import { ReversePipe } from "./shared/reverse.pipe";
+import { EditGarageComponent } from './garage-list/edit-garage/edit-garage.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ReversePipe } from "./shared/reverse.pipe";
     EditBlogComponent,
     BlogDetailsComponent,
     LoadingSpinnerComponent,
-    AuthComponent
+    AuthComponent,
+    EditGarageComponent
   ],
   imports: [
     BrowserModule,
