@@ -9,6 +9,10 @@ export class BlogsServices {
   activeBlog = new Subject<Blog>();
   activeIndex: number;
 
+  private blogs: Blog[] = [];
+
+  constructor(private http: HttpService) {}
+
   get blogResolver() {
     return JSON.parse(JSON.stringify(this.blogs));
   }
@@ -21,9 +25,6 @@ export class BlogsServices {
   set test3(id: number) {
     this.activeIndex = id;
   }
-
-  private blogs: Blog[] = [];
-  constructor(private http: HttpService) {}
 
   getBlogs() {
     return this.http.httpFetchBlogs();

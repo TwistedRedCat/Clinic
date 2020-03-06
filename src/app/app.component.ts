@@ -1,4 +1,12 @@
-import { Component, OnInit, OnChanges, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  HostListener
+} from "@angular/core";
 import { HttpService } from "./services/http.service";
 import { Subscription } from "rxjs";
 
@@ -21,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     this.httpService.errorMsg.subscribe(result => {
       this.errorMsg = result;
+      console.log(this.errorMsg);
     });
   }
 

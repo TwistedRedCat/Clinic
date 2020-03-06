@@ -11,7 +11,9 @@ import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.componen
 import { BlogsResolverService } from "./services/blog-resolver.service";
 import { AuthRouteGuardService } from "./services/authRouteGuard.service";
 import { AuthComponent } from "./auth/auth.component";
-import { EditGarageComponent } from './garage-list/edit-garage/edit-garage.component';
+import { EditGarageComponent } from "./garage-list/edit-garage/edit-garage.component";
+import { GarageResolverService } from "./services/garage-resolver.service";
+import { ErrorHandlerComponent } from "./error-handler/error-handler.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -29,10 +31,11 @@ const appRoutes: Routes = [
     resolve: { blog: BlogsResolverService },
     children: [{ path: "edit", component: EditBlogComponent }]
   },
-  { path: "garage-sale/new", component: EditGarageComponent},
+  { path: "garage-sale/new", component: EditGarageComponent },
   {
     path: "garage-sale",
     component: GarageListComponent,
+    resolve: { item: GarageResolverService },
     children: [{ path: "details", component: GarageDetailsComponent }]
   },
   {
@@ -40,7 +43,8 @@ const appRoutes: Routes = [
     component: PhotolistComponent,
     canActivate: [AuthRouteGuardService]
   },
-  { path: "**", redirectTo: "/blogs" }
+  { path: "error", component: ErrorHandlerComponent },
+  { path: "**", redirectTo: "/" }
 ];
 
 @NgModule({

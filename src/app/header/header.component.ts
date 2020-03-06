@@ -10,6 +10,8 @@ import {
   HostListener
 } from "@angular/core";
 
+import Swal from "sweetalert2";
+
 import { NgForm } from "@angular/forms";
 import { HttpService, AuthResponse } from "../services/http.service";
 import { Observable, Subscription } from "rxjs";
@@ -21,13 +23,25 @@ import { Observable, Subscription } from "rxjs";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild("a") el: ElementRef;
+  @ViewChild("modal") modal: ElementRef;
+  @ViewChild("b") el2: ElementRef;
   @ViewChild("box") box: ElementRef;
   @Output() isLoading = new EventEmitter();
   @Output() errorMsg = new EventEmitter<string>();
+
   @HostListener("document:click", ["$event"]) listenAuth(event: any) {
     const x = event.target.classList.contains("fa-user-times");
     const y = event.target.classList.contains("ico");
     const z = this.el.nativeElement.children[1].classList.length;
+    const a = event.target.classList.contains("ham");
+    const b = this.el2.nativeElement.classList.length;
+
+    if (a && b === 2) {
+      this.el2.nativeElement.classList.add("show");
+    }
+    if (a && b !== 2) {
+      this.el2.nativeElement.classList.remove("show");
+    }
     if ((x || y) && z === 1) {
       this.el.nativeElement.children[1].classList.add("show");
     } else {
@@ -45,7 +59,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   sticky: number;
-
   isLoggedIn = false;
   loadStatus = false;
 
@@ -66,9 +79,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogOut() {
-    const confirmation = confirm("Are you sure you want to sign out?");
-    if (confirmation) {
-      this.httpService.logOut();
-    }
+    // const confirmation = confirm("Are you sure you want to sign out?");
+    // if (confirmation) {
+    //   this.httpService.logOut();
+    // }
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log me out!"
+    }).then(result => {
+      if (result.value) {
+        // Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        this.httpService.logOut();
+      }
+    });
   }
 }

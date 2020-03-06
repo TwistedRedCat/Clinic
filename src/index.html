@@ -15,25 +15,5 @@
   </head>
   <body>
     <app-root></app-root>
-
-    <script>
-      window.myWidgetParam ? window.myWidgetParam : (window.myWidgetParam = []);
-      window.myWidgetParam.push({
-        id: 12,
-        cityid: "1733046",
-        appid: "b9443c09737879d8c31ad263e4e37b4e",
-        units: "metric",
-        containerid: "openweathermap-widget-12"
-      });
-      (function() {
-        const script = document.createElement("script");
-        script.async = true;
-        script.charset = "utf-8";
-        script.src =
-          "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-        const s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(script, s);
-      })();
-    </script>
   </body>
 </html>

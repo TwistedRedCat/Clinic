@@ -1,20 +1,23 @@
 import { Injectable } from "@angular/core";
 import { GarageItem } from "../shared/GarageItem.model";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({ providedIn: "root" })
 export class GarageServices {
-
   constructor(private http: HttpClient) {}
 
   fetchProduct() {
-    return this.http.get<GarageItem>("http://localhost:8080/garage");
+    return this.http.get<GarageItem>(
+      "https://rest-endpoint-husin.herokuapp.com/garage/"
+    );
   }
 
   addProduct(item: GarageItem) {
-    return this.http.post<GarageItem>("http://localhost:8080/garage/add-item", item);
+    return this.http.post<GarageItem>(
+      "https://rest-endpoint-husin.herokuapp.com/garage/add-item",
+      item
+    );
   }
-
 
   // items: GarageItem[] = [
   //   new GarageItem(

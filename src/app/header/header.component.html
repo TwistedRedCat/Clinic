@@ -5,9 +5,22 @@
   Husni's Website
 </nav>
 <nav class="navbar navbar-expand-md" id="myHeader" #box>
-  <div class="container">
-    <a class="navbar-brand" href="/"><i class="fas fa-home"></i></a>
+  <div class="container conf">
+    <a class="navbar-brand" type="button" href="/"
+      ><i class="fas fa-home"></i
+    ></a>
     <button
+      class="navbar-toggler toggler-example pull-right ham"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent1"
+      aria-controls="navbarSupportedContent1"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="dark-blue-text"><i class="fas fa-bars fa-1x ham"></i></span>
+    </button>
+    <!-- <button
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
@@ -15,9 +28,9 @@
       aria-controls="navbarsExampleDefault"
       aria-expanded="false"
       aria-label="Toggle navigation"
-    ></button>
+    ></button> -->
 
-    <div class="navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent1" #b>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="blogs"
@@ -28,11 +41,11 @@
           <a class="nav-link" routerLink="garage-sale">Garage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/" tabindex="-1">Photo</a>
+          <a class="nav-link" routerLink="photo" tabindex="-1">Photo</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav">
-        <li class="dropdown" #a>
+      <ul class="nav2 navbar-nav pull-right">
+        <li class="dropdown dropdown-menu-right" #a>
           <div
             *ngIf="!isLoggedIn; else loggedin"
             style="cursor: pointer;color: white;"
@@ -41,7 +54,7 @@
             <i class="fas fa-user-times"></i>
           </div>
           <ng-template #loggedin>
-            <div class="row ico" style="cursor: pointer;">
+            <div class="row" style="cursor: pointer;">
               <a class="nav-link" href="#" tabindex="-1" (click)="onLogOut()"
                 ><i class="fas fa-user-check"></i> SignOut</a
               >

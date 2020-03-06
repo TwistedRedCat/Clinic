@@ -14,26 +14,29 @@
   </div>
 </table> -->
 <div>
-  <button class="btn-primary">
-    <a style="color: white;" routerLink="new"> New Item </a>
-  </button>
-</div>
-<hr />
-<div class="row">
-  <div class="col-md-3 list-group-item" *ngFor="let x of items; let i = index">
-    <img
-      [src]="x.imageUrl"
-      alt="test"
-      class="img-responsive col"
-      style="height: 100px; width: 100px;"
-    />
-    <div class="col-xs-12">
-      <ul class="list-group">
-        <h3>{{ x.title }}</h3>
-        <h3>RM {{ x.price }}</h3>
-        <li class="list-group-item">Description: {{ x.description }}</li>
-        <li class="list-group-item">Contact: Any phone number</li>
-        <!-- <span>
+  <div class="container">
+    <button class="btn-primary" style="margin-top: 10px;">
+      <a style="color: white;" routerLink="new"> New Item </a>
+    </button>
+    <hr />
+    <div class="row">
+      <div
+        class="col-md-3 list-group-item"
+        *ngFor="let x of items; let i = index"
+      >
+        <img
+          [src]="x.imageUrl"
+          alt="test"
+          class="img-responsive col"
+          style="height: 100px; width: 100px;"
+        />
+        <div class="col-xs-12">
+          <ul class="list-group">
+            <h3>{{ x.title }}</h3>
+            <h3>RM {{ x.price }}</h3>
+            <li class="list-group-item">Description: {{ x.description }}</li>
+            <li class="list-group-item">Contact: Any phone number</li>
+            <!-- <span>
           <a
             target="_blank"
             href="{{
@@ -51,7 +54,9 @@
             </div>
           </a>
         </span> -->
-      </ul>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

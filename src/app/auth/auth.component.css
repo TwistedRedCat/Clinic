@@ -8,11 +8,46 @@
 }
 
 .mycentered-text {
-    text-align:center
+  text-align: center;
+}
+
+.box {
+  width: 700px;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: rgb(209, 202, 202);
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: rgb(209, 202, 202);
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: rgb(209, 202, 202);
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: rgb(209, 202, 202);
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+label {
+  float: left;
 }
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .box {
+    width: 300px;
   }
 }

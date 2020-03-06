@@ -21,7 +21,9 @@ import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinne
 import { AuthInterceptor } from "./services/http-interceptor.service";
 import { AuthComponent } from "./auth/auth.component";
 import { ReversePipe } from "./shared/reverse.pipe";
-import { EditGarageComponent } from './garage-list/edit-garage/edit-garage.component';
+import { EditGarageComponent } from "./garage-list/edit-garage/edit-garage.component";
+import { MDBBootstrapModule } from "angular-bootstrap-md";
+import { ErrorHandlerComponent } from './error-handler/error-handler.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +43,16 @@ import { EditGarageComponent } from './garage-list/edit-garage/edit-garage.compo
     BlogDetailsComponent,
     LoadingSpinnerComponent,
     AuthComponent,
-    EditGarageComponent
+    EditGarageComponent,
+    ErrorHandlerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -1,4 +1,4 @@
-<main role="main" class="container">
+<div class="container-fluid">
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div
     class="d-flex align-items-center p-3 text-white-50 rounded shadow-sm"
@@ -8,22 +8,36 @@
       <h1 class="mb-0 text-white lh-100">
         MUHAMMAD HUSNI BIN FAURI @ FAUZI
       </h1>
-      <h4>Web Developer, Football Fan, Gamer</h4>
+      <h3>Web Developer, Football Fan, Gamer</h3>
     </div>
   </div>
   <div class="jumbotron">
     <div class="container">
       <div class="row">
-        <div class="col-md-5">
-          <img
-            src="https://drive.google.com/uc?export=view&id=17tkkD_10dWPcQvxJMqBeBjceX12uEJCo"
-            alt="No Image"
-            class="img-responsive"
-            style="max-height: 250px;
-        min-height:250px;"
-          />
-          <!-- https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQRE7exLNP9TQNxitPK1COpZCjJijQGDpcCJAvuqA6g9MyfIZX0 -->
-          <p style="color: blue; font-size: large;">Information</p>
+        <div class="col-md-4">
+          <mdb-carousel [isControls]="false" [animation]="'slide'">
+            <mdb-carousel-item>
+              <img
+                class="d-block w-100 img-responsive photo-image"
+                src="https://drive.google.com/uc?export=view&id=17tkkD_10dWPcQvxJMqBeBjceX12uEJCo"
+                alt="First slide"
+              />
+            </mdb-carousel-item>
+            <mdb-carousel-item>
+              <img
+                class="d-block w-100 img-responsive photo-image"
+                src="https://drive.google.com/uc?export=view&id=1Y337AryzG9ueomwSgijurUDm1dNrvDyQ"
+                alt="Second slide"
+              />
+            </mdb-carousel-item>
+            <mdb-carousel-item>
+              <img
+                class="d-block w-100 img-responsive photo-image"
+                src="https://drive.google.com/uc?export=view&id=1cwi5Htbay4SqznFzLQE4RbwCFMgAAcgL"
+                alt="Third slide"
+              />
+            </mdb-carousel-item>
+          </mdb-carousel>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               Name: Muhammad Husni bin Fauri @ Fauzi
@@ -34,16 +48,32 @@
             <li class="list-group-item">Phone: +60133157243</li>
             <li class="list-group-item">Email: mhusnifauzi@gmail.com</li>
           </ul>
-          <i class="fab fa-twitter"></i><i class="fab fa-whatsapp"></i>
-          <i class="fab fa-facebook-f"></i>
+          <p>
+            <a
+              target="_blank"
+              href="https://twitter.com/BinFauri"
+              style="margin-right: 5px;"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              target="_blank"
+              href="https://www.facebook.com/muhammadhusni.fauzi"
+              style="margin-right: 5px;"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=+60133157243&text=Howdy Husni"
+              style="margin-right: 5px;"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+          </p>
         </div>
-        <div class="col-md-7">
-          <h1>
-            Hello Stranger! Thank You For Visiting.<i
-              class="far fa-smile-beam"
-            ></i>
-          </h1>
-          <h5>I am Available for work</h5>
+        <div class="col-md-8" style="font-family: 'Cabin', sans-serif;">
+          <h2>
+            Hello Stranger! Thank You For Visiting. I am Available for work
+          </h2>
+          <hr />
           <p>A bit about myself.</p>
           <p>
             I love learning and would like to know things that powers the world
@@ -61,14 +91,22 @@
             I am a degree holder in Computer and Information Engineering from
             International Islamic University Malaysia (IIUM)
           </p>
-          <button class="btn btn-primary">
-            <a
-              style="color: white;"
-              target="_blank"
-              href="https://drive.google.com/file/d/1PP4hEnXIBxPL7VjryLWMNZErwwL2Pq5b/view?usp=sharing"
-              >Download CV</a
-            >
-          </button>
+          <hr />
+          <a
+            target="_blank"
+            href="https://drive.google.com/file/d/1L2AF3TnmAR2BN41iN5HZKZsYzu_Lli4S/view?usp=sharing"
+            ><button class="btn btn-primary btnCV" type="button">
+              VIEW CV
+            </button></a
+          >
+          <a
+            target="_blank"
+            style="font-family: 'Cabin', sans-serif;"
+            href="https://drive.google.com/uc?export=download&id=1L2AF3TnmAR2BN41iN5HZKZsYzu_Lli4S"
+            ><button class="btn btn-primary btnCV" type="button">
+              DOWNLOAD CV
+            </button></a
+          >
         </div>
       </div>
     </div>
@@ -79,33 +117,36 @@
     <div class="row">
       <div class="col-md-4">
         <h2>Testimonial</h2>
-        <p>
-          If you are looking for an entry position web developer then I am the
-          right guy for you!
-        </p>
+
+        If you are looking for an entry position web developer then I am the
+        right guy for you!
       </div>
       <div class="col-md-4">
-        <h2>Weather API</h2>
-        <div *ngIf="weather">
-          <h5>Weather Location: {{ weather.location }}</h5>
-          <h5>Temperature: {{ weather.temperature }} &deg;C</h5>
-        </div>
-        <div id="openweathermap-widget-12"></div>
-      </div>
-      <div class="col-md-4">
-        <h2>Latest Trump tweet</h2>
+        <h2>Latest Husni's Tweet</h2>
         <p>
           <a
             class="twitter-timeline"
             data-width="500"
-            data-height="500"
+            data-height="300"
             href="https://twitter.com/BinFauri?ref_src=twsrc%5Etfw"
-            >Tweets by realDonaldTrump</a
-          >
+          ></a>
         </p>
+      </div>
+      <div class="col-md-4">
+        <h2>Life Motto</h2>
+        <ul>
+          <li>Work Hard, Play Hard</li>
+          <li>
+            If you want to go fast, go alone; if you want to go far, go together
+          </li>
+          <li>
+            Start by doing what's necessary; then do what's possible; and
+            suddenly you are doing the impossible.
+          </li>
+        </ul>
       </div>
     </div>
 
     <hr />
   </div>
-</main>
+</div>

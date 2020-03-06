@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { GarageServices } from "src/app/services/garage.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-edit-garage",
@@ -8,7 +9,11 @@ import { GarageServices } from "src/app/services/garage.service";
   styleUrls: ["./edit-garage.component.css"]
 })
 export class EditGarageComponent implements OnInit {
-  constructor(private garageService: GarageServices) {}
+  constructor(
+    private garageService: GarageServices,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,6 +25,7 @@ export class EditGarageComponent implements OnInit {
     console.log(form.value);
     this.garageService.addProduct(form.value).subscribe(result => {
       console.log(result);
+      this.router.navigate(["../"], { relativeTo: this.route });
     });
     // if (this.editMode) {
     //   this.blogsServices.updateBlog(this.n, form.value);

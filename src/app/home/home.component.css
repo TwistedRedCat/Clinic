@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "Oxanium", cursive;
+  font-family: "Cabin", sans-serif;
+  src: url(/assets/Cabin/Cabin-Regular.ttf) format("truetype");
+  src: url(/assets/oxanium/Oxanium-Light.ttf) format("truetype");
+  font-weight: 100;
+}
+
+.list-group-item,
+.lh-100 {
+  font-family: "Oxanium", cursive;
+}
+
+h1 {
+  font-size: 50px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+h2 {
+  font-size: 45px;
+}
+
+h3 {
+  font-size: 30px;
+  color: white;
+}
+
+p {
+  font-size: 25px;
+}
+
+.photo-image {
+  min-height: 480px;
+  width: auto;
+}
+
+.list-group-item {
+  padding: 5px;
+}
+
+.btnCV {
+  margin: 5px;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: blue;
+}
