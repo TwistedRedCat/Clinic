@@ -33,11 +33,15 @@ export class HttpService {
     return this.userActiveBool;
   }
 
+  // set loadingStatus(value: boolean) {
+  //   this.isLoading.next(value);
+  // }
+
   constructor(private http: HttpClient, private router: Router) {}
 
   httpFetchBlogs() {
     return this.http
-      .get<any>("https://husin-web.firebaseio.com//posts.json")
+      .get<any>("https:/husin-web.firebaseio.com/posts.json")
       .pipe(
         tap(fetchedBlogs => {
           this.urlPath = [];

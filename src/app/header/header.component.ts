@@ -6,15 +6,14 @@ import {
   OnDestroy,
   ViewChild,
   ElementRef,
-  Input,
   HostListener
 } from "@angular/core";
 
 import Swal from "sweetalert2";
 
-import { NgForm } from "@angular/forms";
-import { HttpService, AuthResponse } from "../services/http.service";
-import { Observable, Subscription } from "rxjs";
+import { HttpService } from "../services/http.service";
+import { Router } from "@angular/router";
+import { GarageServices } from "../services/garage.service";
 
 @Component({
   selector: "app-header",
@@ -62,7 +61,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   loadStatus = false;
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    private router: Router,
+    private garageService: GarageServices
+  ) {}
 
   ngOnInit() {
     this.isLoggedIn = this.httpService.activatedUser;
@@ -95,6 +98,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
         // Swal.fire("Deleted!", "Your file has been deleted.", "success");
         this.httpService.logOut();
       }
+    });
+  }
+
+  onSpinner() {
+    this.httpService.isLoading.next(true);
+    this.garageService.fetchProduct().subscribe(result => {
+      this.garageService.items = result;
+      setTimeout(() => {
+        this.router.navigate(["/garage-sale"]);
+        this.httpService.isLoading.next(false);
+      }, 500);
     });
   }
 }

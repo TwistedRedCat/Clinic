@@ -6,12 +6,15 @@ import { HttpClient } from "@angular/common/http";
 export class GarageServices {
   constructor(private http: HttpClient) {}
 
+  public items: GarageItem[] = [];
+
   fetchProduct() {
-    return this.http.get<GarageItem>(
-      "https://rest-endpoint-husin.herokuapp.com/garage/"
+    return this.http.get<any>(
+      "http://restnode-env.eba-bbfthmhr.ap-southeast-1.elasticbeanstalk.com/garage"
     );
   }
 
+  // "https://rest-endpoint-husin.herokuapp.com/garage/"
   addProduct(item: GarageItem) {
     return this.http.post<GarageItem>(
       "https://rest-endpoint-husin.herokuapp.com/garage/add-item",
